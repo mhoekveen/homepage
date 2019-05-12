@@ -1,0 +1,184 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    height:100vh;
+    width:100vw;
+    color:white;
+    overflow:hidden;
+}
+
+/* Fonts and colors */
+h1 {
+    font-size:3em;
+}
+
+p {
+    font-size:1em;
+    line-height:1.1;
+}
+
+/* Base Layout */
+#wrapper {
+    max-width:960px;
+    height:100%;
+    margin: 0 auto;
+    overflow-y: auto;
+}
+
+#wrapper > div {
+    background:rgba(37, 37, 37, 0.9);
+    margin:25px 0;
+    padding:15px;
+    border-radius:15px;
+}
+
+/* Background */
+#bg {
+    position:fixed;
+    width:100vw;
+    height:100vh;
+    z-index:-1;
+    background-image: url('img/bg-low.jpg');
+    background-size: cover;
+}
+
+#bg > #bige {
+    opacity: 0;
+    background-size: cover;
+    transition: opacity 2s ease-in;
+    width:100%;
+    height:100%;
+    z-index:0;
+    position:fixed;
+}
+
+#bg > #bige.background {
+    opacity: 1;
+    background-image:url('img/background.png');
+}
+
+/* Header */
+
+#wrapper > #header {
+
+}
+
+#header h1 {
+    text-align:center;
+}
+
+/* 
+    Links to self hosted services 
+
+    (•_•)
+    <)  )╯Always
+    /    \
+
+    \(•_•)
+     (  (>  Own
+    /    \
+
+    (•_•)
+    <)  )>  Your Platform
+    /    \
+
+*/
+
+#self-hosted {
+    display:flex;
+    flex-flow:row wrap;
+    justify-content: space-evenly;
+}
+
+#self-hosted > div {
+    flex:none;
+    width:100px;
+    height:100px;
+    margin: 10px;
+    border-radius:50%;
+    overflow:hidden;
+    position:relative;
+    cursor: pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+#self-hosted > div > a {
+    display:inline-block;
+    width:100%;
+    height:100%;
+    color:white;
+}
+
+#self-hosted > div > img, #self-hosted > div > a > img, #self-hosted > div > a > object {
+    width:100px;
+    height:100px;
+}
+
+#self-hosted > div > span, #self-hosted > div > a > span {
+    width:calc(100% - 6px);
+    padding:3px;
+    position:absolute;
+    text-align:center;
+    display:inline-block;
+    top: 50%;
+    background:rgba(37, 37, 37, 0.9);
+    transition: opacity .2s linear;
+    opacity:0;
+}
+
+#self-hosted > div:hover > span, #self-hosted > div:hover > a > span {
+    opacity:1;
+}
+
+
+/* Server statusses... stati? */
+#stati {
+
+}
+
+#stati > .refresh {
+    font-size:2em;
+    line-height:1;
+    cursor:pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+#stati > .status {
+    color:white;
+    width:100px;
+}
+
+#stati >.status:not(.up):not(.down) { 
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+#stati > .up {
+    color:green;
+}
+
+#stati > .down {
+    color:red;
+}
+
+@media (max-width:960px) {
+    #wrapper {
+        width:100%;
+        margin: 0;
+    }
+}
