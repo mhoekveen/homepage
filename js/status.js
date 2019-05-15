@@ -1,5 +1,11 @@
+const fetchOptions = {
+    cache: 'no-cache',
+    mode: 'cors'
+};
+
 function getStatus(url, el) {
-    fetch(url)
+    //TODO: Make some effort to actually take the promise and return off of that.
+    fetch(url, fetchOptions)
     .then(function(data){
         el.className += " up";
     })
