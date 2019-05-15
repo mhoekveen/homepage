@@ -30,7 +30,7 @@ p {
 }
 
 #wrapper > div {
-    background:rgba(37, 37, 37, 0.9);
+    background:rgba(8, 8, 8, 0.9);
     margin:25px 0;
     padding:15px;
     border-radius:15px;
@@ -139,10 +139,13 @@ p {
 
 /* Server statusses... stati? */
 #stati {
-
+    display:flex;
+    flex-flow:row wrap;
 }
 
 #stati > .refresh {
+    flex:none;
+    width:100%;
     font-size:2em;
     line-height:1;
     cursor:pointer;
@@ -151,12 +154,28 @@ p {
     -webkit-user-select: none;
 }
 
-#stati > .status {
-    color:white;
-    width:100px;
+#stati > .server {
+    flex:1 1 auto;
+    background:rgba(200, 200, 200, 0.1)
 }
 
-#stati >.status:not(.up):not(.down) { 
+#stati > .server > .status {
+    color:white;
+    width:100px;
+    margin-left: 1em;
+}
+
+#stati > .server > .status:first-child {
+    margin-left: 0;
+    border: 1px solid black;
+    padding:3px 6px;
+    border-radius:15px;
+    background:white;
+    color:black;
+
+}
+
+#stati > .server > .status:not(.up):not(.down) { 
     animation: lds-dual-ring 1.2s linear infinite;
 }
 @keyframes lds-dual-ring {
@@ -168,11 +187,11 @@ p {
     }
 }
 
-#stati > .up {
+#stati > .server > .status.up {
     color:green;
 }
 
-#stati > .down {
+#stati > .server > .status.down {
     color:red;
 }
 
