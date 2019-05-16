@@ -1,33 +1,41 @@
 const fetchOptions = {
-    cache: 'no-cache',
+    cache: 'no-cache', //always get up-to-date info
     mode: 'cors'
 };
 
-function getStatus(url, el) {
-    //TODO: Make some effort to actually take the promise and return off of that.
-    fetch(url, fetchOptions)
-    .then(function(data){
-        el.className += " up";
-    })
-    .catch(function(error) {
-        console.log(error);
-        el.className += " down";
+//Checks if a certain server is up
+//"up" means that the endpoint responds
+//with some non error response.
+function checkServer(url) {
+    return new Promise(function(resolve, reject) {
+        fetch(url, fetchOptions)
+        .then(function(data){
+            resolve();
+        })
+        .catch(function(error) {
+            reject();
+        });
     });
 }
 
+//Check if a service is online at a certain URL
+//Uses netdata, with "groups.processes" chart.
+//Assumes a service runs in a group with the same name
+//and only that service uses the group.
 function checkService(url, service, el) {
     //Get 1 second of process count for the given service user
     var call = url + '?chart=groups.processes&after=0&before=-1&points=1&dimension=' + service;
-    fetch(call)
-    .then(response => response.json())
-    .then(function(data){
-        var processes = data.data[0][1];
-        if (processes >= 1) el.className += " up";
-        else el.className += " down";
-    })
-    .catch(function(error) {
-        console.log(error);
-        el.className += " down";
+    return new Promise(function(resolve, reject) {
+        fetch(call)
+        .then(response => response.json())
+        .then(function(data){
+            var processes = data.data[0][1];
+            if (processes >= 1) resolve();
+            else reject();
+        })
+        .catch(function(error) {
+            reject();
+        });
     });
 }
 
@@ -36,10 +44,17 @@ function loadStati() {
     Array.from(stati).forEach((status) => {
         status.className = "status";
         var service = status.getAttribute("service");
+        var promise = null;
         if (service){
-            checkService(status.getAttribute("url"), service, status);
+            promise = checkService(status.getAttribute("url"), service, status);
         } else {
-            getStatus(status.getAttribute("url"), status);
+            promise = checkServer(status.getAttribute("url"));
         }
+        promise.then(function(data){
+            status.className += " up";
+        })
+        .catch(function(error) {
+            status.className += " down";
+        });
     });
 }
