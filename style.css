@@ -138,12 +138,17 @@ p {
 
 
 /* Server statusses... stati? */
-#stati {
+#wrapper > #stati {
     display:flex;
-    flex-flow:row wrap;
+    flex-flow:row;
+    justify-content: space-between;
+    position:relative;
 }
 
 #stati > .refresh {
+    position:absolute;
+    bottom: 10px;
+    left: 10px;
     flex:none;
     width:100%;
     font-size:2em;
@@ -156,48 +161,90 @@ p {
 
 #stati > .server {
     flex:1 1 auto;
-    background:rgba(200, 200, 200, 0.1)
+    margin: 0 10px;
 }
 
+/* The middle stati */
 #stati > .server > .status {
+    display:flex;
     color:white;
-    width:100px;
-    margin-left: 1em;
+    margin-left: 2em;
+    padding: 6px 10px;
+    height:17px;
+    line-height:1;
+    border-color: white;
+    border-width: 2px;
+    border-left-style: solid;
+    border-right-style: solid;
 }
 
 #stati > .server > .status:first-child {
     margin-left: 0;
-    border: 1px solid black;
-    padding:3px 6px;
-    border-radius:15px;
-    background:white;
-    color:black;
+    border-top-left-radius:15px;
+    border-bottom-left-radius:15px;
+    border-top-right-radius:15px;
+    border-style: solid;
+    color:white;
 
 }
 
-#stati > .server > .status:not(.up):not(.down) { 
-    animation: lds-dual-ring 1.2s linear infinite;
+#stati > .server > .status:last-child {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-style:solid;
+} 
+
+
+/* Status icon with animation */
+#stati > .server > .status > .icon {
+    flex:none;
+    width:17px;
+    height:17px;
+    font-size:20px;
+    line-height:1;
+    border-radius:50%;
+    position: relative;
+    transform-origin: 50%;
+    margin-right: 5px;
 }
-@keyframes lds-dual-ring {
-    0% {
-      transform: rotate(0deg);
+
+#stati > .server > .status:not(.up):not(.down) > .icon {
+    background:grey;
+    animation: loading 1s linear infinite;
+}
+@keyframes loading {
+    from {
+        transform: scale(1.0);
     }
-    100% {
-      transform: rotate(360deg);
+    50% {
+        transform: scale(1.3, 1.3);
+    }
+    to {
+        transform: scale(1.0);
     }
 }
 
-#stati > .server > .status.up {
-    color:green;
+#stati > .server > .status.up > .icon {
+    background: green;
 }
 
-#stati > .server > .status.down {
-    color:red;
+#stati > .server > .status.down > .icon {
+    background: red;
 }
 
-@media (max-width:960px) {
+@media (max-width:720px) {
     #wrapper {
         width:100%;
         margin: 0;
+    }
+
+    #wrapper > #stati {
+        flex-wrap: wrap;
+    }
+
+    #wrapper > #stati > .server {
+        max-width:100%;
+        width:100%;
+        margin: 10px 0;
     }
 }
