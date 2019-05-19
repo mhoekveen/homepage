@@ -10,7 +10,8 @@ function checkServer(url) {
     return new Promise(function(resolve, reject) {
         fetch(url, fetchOptions)
         .then(function(data){
-            resolve();
+            if(data.ok) resolve();
+            else reject();
         })
         .catch(function(error) {
             reject();
