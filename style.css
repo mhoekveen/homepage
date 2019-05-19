@@ -237,6 +237,10 @@ p {
         margin: 0;
     }
 
+    #self-hosted > div > span, #self-hosted > div > a > span {
+        opacity:1;
+    }
+
     #wrapper > #stati {
         flex-wrap: wrap;
     }
