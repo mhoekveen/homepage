@@ -42,25 +42,24 @@ p {
     width:100vw;
     height:100vh;
     z-index:-1;
-    background-image: url('img/bg-low.jpg');
+    background-image: url('img/bg/shit.jpg');
     background-size: cover;
+    background-color:black;
 }
 
-#bg > #bige {
+#bg img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 0;
     opacity: 0;
-    background-size: cover;
-    transition: opacity 2s ease-in;
-    width:100%;
-    height:100%;
-    z-index:0;
-    position:fixed;
+    transition: opacity 3s linear;
 }
 
-#bg > #bige.background {
-    opacity: 1;
-    background-image:url('img/background.png');
+#bg img.loaded {
+    opacity: 1.0;
 }
-
 /* Header */
 
 #wrapper > #header {
