@@ -1,3 +1,5 @@
+@import 'colors';
+
 * {
     margin:0;
     padding:0;
@@ -7,7 +9,7 @@ body {
     font-family: sans-serif;
     height:100vh;
     width:100vw;
-    color:white;
+    color:$foreground;
     overflow:hidden;
 }
 
@@ -23,17 +25,18 @@ p {
 
 /* Base Layout */
 #wrapper {
-    max-width:960px;
     height:100%;
     margin: 0 auto;
     overflow-y: auto;
 }
 
 #wrapper > div {
-    background:rgba(8, 8, 8, 0.9);
-    margin:25px 0;
+    max-width:1024px;
+    background-color:rgba($background, 0.9);
+    margin:25px auto;
     padding:15px;
-    border-radius:15px;
+    border-radius:0px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.9); 
 }
 
 /* Background */
@@ -42,9 +45,10 @@ p {
     width:100vw;
     height:100vh;
     z-index:-1;
-    background-image: url('img/bg/shit.jpg');
+    background-color:$color2;
+    background-image: url('../img/bg/shit.jpg');
     background-size: cover;
-    background-color:black;
+    background-position: 50% 50%;
 }
 
 #bg img {
@@ -52,7 +56,7 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 0 0;
+    object-position: 50% 50%;
     opacity: 0;
     transition: opacity 3s linear;
 }
@@ -111,7 +115,7 @@ p {
     display:inline-block;
     width:100%;
     height:100%;
-    color:white;
+    color:$foreground;
 }
 
 #self-hosted > div > img, #self-hosted > div > a > img, #self-hosted > div > a > object {
@@ -126,7 +130,7 @@ p {
     text-align:center;
     display:inline-block;
     top: 50%;
-    background:rgba(37, 37, 37, 0.9);
+    background:rgba($background, 0.9);
     transition: opacity .2s linear;
     opacity:0;
 }
@@ -166,12 +170,12 @@ p {
 /* The middle stati */
 #stati > .server > .status {
     display:flex;
-    color:white;
+    color:$foreground;
     margin-left: 2em;
     padding: 6px 10px;
     height:17px;
     line-height:1;
-    border-color: white;
+    border-color: $foreground;
     border-width: 2px;
     border-left-style: solid;
     border-right-style: solid;
@@ -183,7 +187,7 @@ p {
     border-bottom-left-radius:15px;
     border-top-right-radius:15px;
     border-style: solid;
-    color:white;
+    color:$foreground;
 
 }
 
@@ -231,11 +235,13 @@ p {
     background: red;
 }
 
-@media (max-width:720px) {
-    #wrapper {
-        width:100%;
-        margin: 0;
+@media (max-width:1048px) {
+    #wrapper > div {
+        margin: 15px 12px;
     }
+}
+
+@media (max-width:720px) {
 
     #self-hosted > div > span, #self-hosted > div > a > span {
         opacity:1;
