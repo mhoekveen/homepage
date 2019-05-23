@@ -4,3 +4,5 @@ logo/
 img/
 
 *.css
+
+*.map
