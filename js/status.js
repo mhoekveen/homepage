@@ -2,14 +2,20 @@ const fetchOptions = {
     cache: 'no-cache', //always get up-to-date info
     mode: 'cors'
 };
+const fetchTimeout = 2000;
 
 //Checks if a certain server is up
 //"up" means that the endpoint responds
 //with some non error response.
 function checkServer(url) {
     return new Promise(function(resolve, reject) {
+        const timeout = setTimeout(function() {
+            reject();
+        }, fetchTimeout);
+
         fetch(url, fetchOptions)
         .then(function(data){
+            clearTimeout(timeout);
             if(data.ok) resolve();
             else reject();
         })
@@ -27,9 +33,13 @@ function checkService(url, service, el) {
     //Get 1 second of process count for the given service user
     var call = url + '?chart=groups.processes&after=0&before=-1&points=1&dimension=' + service;
     return new Promise(function(resolve, reject) {
+        const timeout = setTimeout(function() {
+            reject();
+        }, fetchTimeout);
         fetch(call)
         .then(response => response.json())
         .then(function(data){
+            clearTimeout(timeout);
             var processes = data.data[0][1];
             if (processes >= 1) resolve();
             else reject();
