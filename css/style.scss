@@ -5,15 +5,13 @@
     padding:0;
 }
 
-body {
-    font-family: sans-serif;
-    height:100vh;
-    width:100vw;
-    color:$foreground;
-    overflow:hidden;
-}
 
 /* Fonts and colors */
+body {
+    font-family: sans-serif;
+    color:$foreground;
+}
+
 h1 {
     font-size:3em;
 }
@@ -24,19 +22,24 @@ p {
 }
 
 /* Base Layout */
+body {
+    height:100vh;
+    width:100vw;
+    overflow:hidden;
+}
+
 #wrapper {
     height:100%;
     margin: 0 auto;
     overflow-y: auto;
-}
-
-#wrapper > div {
-    max-width:1024px;
-    background-color:rgba($background, 0.9);
-    margin:25px auto;
-    padding:15px;
-    border-radius:0px;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.9); 
+    > div {
+        max-width:1024px;
+        background-color:rgba($background, 0.9);
+        margin:25px auto;
+        padding:15px;
+        border-radius:0px;
+        box-shadow: 5px 5px 10px rgba(0,0,0,0.9); 
+    }
 }
 
 /* Background */
@@ -45,194 +48,177 @@ p {
     width:100vw;
     height:100vh;
     z-index:-1;
-    background-color:$color2;
+    background-color:$color3;
     background-image: url('../img/bg/shit.jpg');
     background-size: cover;
     background-position: 50% 50%;
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+        opacity: 0;
+        transition: opacity 3s linear;
+    }
+    img.loaded {
+        opacity: 1.0;
+    }
 }
-
-#bg img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 50% 50%;
-    opacity: 0;
-    transition: opacity 3s linear;
-}
-
-#bg img.loaded {
-    opacity: 1.0;
-}
-/* Header */
-
-#wrapper > #header {
-
-}
-
-#header h1 {
-    text-align:center;
-}
-
-/* 
-    Links to self hosted services 
-
-    (•_•)
-    <)  )╯Always
-    /    \
-
-    \(•_•)
-     (  (>  Own
-    /    \
-
-    (•_•)
-    <)  )>  Your Platform
-    /    \
-
-*/
 
 #self-hosted {
+    /* 
+        Links to self hosted services 
+    
+        (•_•)
+        <)  )╯Always
+        /    \
+    
+        \(•_•)
+         (  (>  Own
+        /    \
+    
+        (•_•)
+        <)  )>  Your Platform
+        /    \
+    
+    */
     display:flex;
     flex-flow:row wrap;
     justify-content: space-evenly;
+
+    .link {
+        flex:none;
+        width:100px;
+        height:100px;
+        margin: 10px;
+        border-radius:50%;
+        overflow:hidden;
+        position:relative;
+        cursor: pointer;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        transition: border-radius 0.3s linear;
+
+        a {
+            display:inline-block;
+            width:100%;
+            height:100%;
+            color:$foreground;
+        }
+        img {
+            width:100px;
+            height:100px;
+        }
+        span {
+            width:calc(100% - 6px);
+            padding:3px;
+            position:absolute;
+            text-align:center;
+            display:inline-block;
+            top: calc(50% - 12px);
+            background:rgba($color3, 0.9);
+            transition: opacity .2s linear;
+            opacity:0;
+        }
+    }
+    .link:hover {
+        border-radius:25%;
+        span {
+            opacity:1;
+        }
+    }
 }
 
-#self-hosted > div {
-    flex:none;
-    width:100px;
-    height:100px;
-    margin: 10px;
-    border-radius:50%;
-    overflow:hidden;
-    position:relative;
-    cursor: pointer;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-}
 
-#self-hosted > div > a {
-    display:inline-block;
-    width:100%;
-    height:100%;
-    color:$foreground;
-}
-
-#self-hosted > div > img, #self-hosted > div > a > img, #self-hosted > div > a > object {
-    width:100px;
-    height:100px;
-}
-
-#self-hosted > div > span, #self-hosted > div > a > span {
-    width:calc(100% - 6px);
-    padding:3px;
-    position:absolute;
-    text-align:center;
-    display:inline-block;
-    top: 50%;
-    background:rgba($background, 0.9);
-    transition: opacity .2s linear;
-    opacity:0;
-}
-
-#self-hosted > div:hover > span, #self-hosted > div:hover > a > span {
-    opacity:1;
-}
-
-
-/* Server statusses... stati? */
-#wrapper > #stati {
+#stati {
+    /* Server statusses... stati? */
     display:flex;
     flex-flow:row;
     justify-content: space-between;
     position:relative;
-}
 
-#stati > .refresh {
-    position:absolute;
-    bottom: 10px;
-    left: 10px;
-    flex:none;
-    width:100%;
-    font-size:2em;
-    line-height:1;
-    cursor:pointer;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-}
-
-#stati > .server {
-    flex:1 1 auto;
-    margin: 0 10px;
-}
-
-/* The middle stati */
-#stati > .server > .status {
-    display:flex;
-    color:$foreground;
-    margin-left: 2em;
-    padding: 6px 10px;
-    height:17px;
-    line-height:1;
-    border-color: $foreground;
-    border-width: 2px;
-    border-left-style: solid;
-    border-right-style: solid;
-}
-
-#stati > .server > .status:first-child {
-    margin-left: 0;
-    border-top-left-radius:15px;
-    border-bottom-left-radius:15px;
-    border-top-right-radius:15px;
-    border-style: solid;
-    color:$foreground;
-
-}
-
-#stati > .server > .status:last-child {
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-style:solid;
-} 
-
-
-/* Status icon with animation */
-#stati > .server > .status > .icon {
-    flex:none;
-    width:17px;
-    height:17px;
-    font-size:20px;
-    line-height:1;
-    border-radius:50%;
-    position: relative;
-    transform-origin: 50%;
-    margin-right: 5px;
-}
-
-#stati > .server > .status:not(.up):not(.down) > .icon {
-    background:grey;
-    animation: loading 1s linear infinite;
-}
-@keyframes loading {
-    from {
-        transform: scale(1.0);
+    .refresh {
+        position:absolute;
+        bottom: 10px;
+        left: 10px;
+        flex:none;
+        width:100%;
+        font-size:2em;
+        line-height:1;
+        cursor:pointer;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
     }
-    50% {
-        transform: scale(1.3, 1.3);
-    }
-    to {
-        transform: scale(1.0);
-    }
-}
+    .server {
+        flex:1 1 auto;
+        margin: 0 10px;
 
-#stati > .server > .status.up > .icon {
-    background: green;
-}
-
-#stati > .server > .status.down > .icon {
-    background: red;
+        .status { 
+            /* the middle stati */
+            display:flex;
+            color:$foreground;
+            margin-left: 2em;
+            padding: 6px 10px;
+            height:17px;
+            line-height:1;
+            border-color: $foreground;
+            border-width: 2px;
+            border-left-style: solid;
+            border-right-style: solid;
+            .icon {
+                flex:none;
+                width:17px;
+                height:17px;
+                font-size:20px;
+                line-height:1;
+                border-radius:50%;
+                position: relative;
+                transform-origin: 50%;
+                margin-right: 5px;
+            }
+        }
+        .status:not(.up):not(.down) { 
+            .icon {
+                /* Schrödingers status */
+                background:grey;
+                animation: loading 1s linear infinite;
+            }
+            @keyframes loading {
+                from {
+                    transform: scale(1.0);
+                }
+                50% {
+                    transform: scale(1.3, 1.3);
+                }
+                to {
+                    transform: scale(1.0);
+                }
+            }
+        }
+        .status:first-child {
+            margin-left: 0;
+            border-top-left-radius:15px;
+            border-bottom-left-radius:15px;
+            border-top-right-radius:15px;
+            border-style: solid;
+            color:$foreground;
+        
+        }
+        .status:last-child {
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border-bottom-style:solid;
+        } 
+        .status.up > .icon {
+            background: green;
+        }
+        .status.down > .icon {
+            background: red;
+        }
+    }
 }
 
 @media (max-width:1048px) {
