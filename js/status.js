@@ -50,6 +50,9 @@ function checkService(url, service, el) {
     });
 }
 
+//Looks at each defined element in the .status div
+//If service attribute is defined, check the netdata endpoint
+//Else, just ping the endpoint for a get response
 function loadStati() {
     var stati = document.getElementsByClassName('status');
     Array.from(stati).forEach((status) => {
