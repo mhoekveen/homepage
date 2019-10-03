@@ -12,4 +12,5 @@ It passes these to a responsive image tag based on viewport dimensions and scree
 ```convert $file -quality 100 high.jpg
 convert $file -quality 50 med.jpg
 convert $file -quality 25 low.jpg
-convert $file -blur 0x8 -quality 20 shit.jpg```
+convert $file -blur 0x8 -quality 20 shit.jpg
+```
