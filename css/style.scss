@@ -21,6 +21,13 @@ p {
     line-height:1.1;
 }
 
+#color-blocks {
+    display:flex;
+    > div {
+        width:35px;
+        height:20px;
+    }
+}
 /* Base Layout */
 body {
     height:100vh;
@@ -118,7 +125,7 @@ body {
             text-align:center;
             display:inline-block;
             top: calc(50% - 12px);
-            background:rgba($color3, 0.9);
+            background:rgba($color1, 0.9);
             transition: opacity .2s linear;
             opacity:0;
         }
