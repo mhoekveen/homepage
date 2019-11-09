@@ -6,6 +6,8 @@ Uses only vanilla JS and should work in most modern browsers and mobile devices.
 
 Uses [pywal](https://github.com/dylanaraps/pywal) and [Sass](https://sass-lang.com/) and some local shell scripting to synchronize my desktop wallpaper and theme to the website.
 
+I use a simple script to retrieve a random wallpaper from [Unsplash](https://unsplash.com/) every now and then, and automatically update this website.
+
 ## Compilation
 Uses SASS syntax to dynamically get the colors from my desktop. Compiling the style-sheet can be done with any implementation of Sass, for example with sassc:
 ```
