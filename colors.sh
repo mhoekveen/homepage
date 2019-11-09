@@ -5,4 +5,4 @@ file="$HOME/.cache/wallpaper"
 wal -c
 wal -i $file
 cp "$HOME/.cache/wal/colors.scss" "css/_colors.scss"
-sassc css/_style.scss css/style.css
+sassc css/style.scss > css/style.css
