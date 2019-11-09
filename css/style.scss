@@ -19,11 +19,22 @@ h1 {
 
 p {
     font-size:1em;
-    line-height:1.1;
+    line-height:1.5em;
+}
+
+a {
+    color: $color4;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+a:hover {
+    color: $color3;
 }
 
 #color-blocks {
     display:flex;
+    margin: 15px 0;
     > div {
         width:35px;
         height:20px;
