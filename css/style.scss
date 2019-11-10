@@ -13,6 +13,10 @@ body {
     color:$foreground;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color:$color1;
+}
+
 h1 {
     font-size:3em;
 }
@@ -189,33 +193,31 @@ body {
             border-right-style: solid;
             .icon {
                 flex:none;
-                width:17px;
+                font-weight:bold;
+                /*width:17px;
                 height:17px;
                 font-size:20px;
                 line-height:1;
                 border-radius:50%;
                 position: relative;
-                transform-origin: 50%;
+                transform-origin: 50%; */
                 margin-right: 5px;
+            }
+            .icon::after {
+                font-weight:bold;
             }
         }
         .status:not(.up):not(.down) { 
-            .icon {
+            .icon::after {
                 /* Schrödingers status */
-                background:grey;
-                animation: loading 1s linear infinite;
+                content: '?';
             }
-            @keyframes loading {
-                from {
-                    transform: scale(1.0);
-                }
-                50% {
-                    transform: scale(1.3, 1.3);
-                }
-                to {
-                    transform: scale(1.0);
-                }
-            }
+        }
+        .status.up {
+            color:$color6;
+        }
+        .status.down {
+            color:$color2;
         }
         .status:first-child {
             margin-left: 0;
@@ -223,19 +225,17 @@ body {
             border-bottom-left-radius:15px;
             border-top-right-radius:15px;
             border-style: solid;
-            color:$foreground;
-        
         }
         .status:last-child {
             border-bottom-left-radius: 15px;
             border-bottom-right-radius: 15px;
             border-bottom-style:solid;
         } 
-        .status.up > .icon {
-            background: green;
+        .status.up > .icon::after {
+            content: '✓';
         }
-        .status.down > .icon {
-            background: red;
+        .status.down > .icon::after {
+            content: '✘';
         }
     }
 }
