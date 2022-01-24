@@ -1,8 +1,8 @@
 # My personal homepage
 
-A simple webpage that displays links to all my hosted services and displays the status of some other services. Still in a definite WIP/Proof of concept stage.
+A simple webpage that displays links to all my hosted services and tells visitors hello.
 
-Uses only vanilla JS and should work in most modern browsers and mobile devices. Uses [netdata](https://github.com/netdata/netdata) to determine service status.
+Uses only vanilla JS and should work in most modern browsers and mobile devices.
 
 Uses [pywal](https://github.com/dylanaraps/pywal) and [Sass](https://sass-lang.com/) and some local shell scripting to synchronize my desktop wallpaper and theme to the website.
 
