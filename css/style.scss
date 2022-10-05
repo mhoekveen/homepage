@@ -38,9 +38,12 @@ a:hover {
 
 #color-blocks {
     display:flex;
-    margin: 15px 0;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    background: linear-gradient(90deg, $color0 6.25%, $color1 18.75%, $color2 31.25%, $color3 43.75%, $color4 56.25%, $color5 68.75%, $color6 81.25%, $color7 91.75%);
     > div {
-        width:35px;
+        flex-grow: 1;
         height:20px;
     }
 }
